@@ -15,8 +15,6 @@ logger = getLogger(__name__)
 
 
 def select_random_horoscope() -> any:
-    random_value = randint(1, 495)
-
     # Load the workbook and select the active worksheet
     workbook = openpyxl.load_workbook('fale_hafez.xlsx')
     sheet = workbook.active
