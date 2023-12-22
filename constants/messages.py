@@ -2,8 +2,11 @@ WELCOME_MESSAGE: str = "به ربات فال حافظ خوش اومدی\n اول
 POETRY: str = """
 فال شما 👇 \n
 {poetry}
+🆔 @fale_hafez_robot
 """
 DESCRIPTION: str = """
 معنی فال شما 👇 \n
 {description}
+
+🆔 @fale_hafez_robot
 """
