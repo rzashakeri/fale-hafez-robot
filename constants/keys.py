@@ -1,1 +1,1 @@
-GET_OMEN: str = "فالم رو بگیر"
+GET_OMEN: str = "فالم رو بگیر 🎲"
