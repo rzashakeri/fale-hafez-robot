@@ -74,10 +74,37 @@ async def take_horoscope(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     )
     horoscope = select_random_horoscope()
     poetry = horoscope.get("poetry")
-    description = horoscope.get("description")
     await context.bot.send_message(
         chat_id=update.message.chat_id, text=POETRY.format(poetry=poetry)
     )
-    await context.bot.send_message(
-        chat_id=update.message.chat_id, text=DESCRIPTION.format(description=description)
+
+    description = horoscope.get("description")
+
+    # Split the text by spaces to simulate typing
+    description_words = description.split()
+
+    # Send a message that will be edited later
+    message = await context.bot.send_message(chat_id=update.message.chat_id, text="معنی فال شما 👇 \n")
+
+    displayed_text = "معنی فال شما 👇 \n\n"
+    for word in description_words:
+        displayed_text += f"{word} "
+
+        # send chat action (is typing ...)
+        await context.bot.send_chat_action(
+            chat_id=update.effective_message.chat_id,
+            action=ChatAction.TYPING
+        )
+
+        # Edit the message with the new text
+        await context.bot.edit_message_text(
+            chat_id=update.message.chat_id,
+            message_id=message.message_id,
+            text=displayed_text
+        )
+
+    await context.bot.edit_message_text(
+        chat_id=update.message.chat_id,
+        message_id=message.message_id,
+        text=DESCRIPTION.format(description=description)
     )
